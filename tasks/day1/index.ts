@@ -20,23 +20,17 @@ const replaceWordsWithNumbers = (line: string) => {
         line = line.replace(regex, value);
     }
 
-    return line;
+    return line.replace(/\D/g, "");
 };
 
-const handleLines = (line: string) => {
-    let firstNum: number | null = null, lastNum: number | null  = null;
+readStream(`${__dirname}/input.txt`, (line) => {
+    let firstNum: number | null = null,
+        lastNum: number | null = null;
 
     line = replaceWordsWithNumbers(line);
 
-    for (const char of line) {
-        const temp = Number.parseInt(char);
-        if (!Number.isNaN(temp)) {
-            if (firstNum === null) {
-                firstNum = temp;
-            }
-            lastNum = temp;
-        }
-    }
+    firstNum = Number.parseInt(line[0]);
+    lastNum = Number.parseInt(line[line.length - 1]);
 
     const res = Number.parseInt("" + firstNum + lastNum);
 
@@ -45,7 +39,5 @@ const handleLines = (line: string) => {
     }
 
     return sum;
-};
-
-readStream(`${__dirname}/input.txt`, handleLines);
+});
 

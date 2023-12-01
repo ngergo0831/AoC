@@ -7,7 +7,7 @@ export const readStream = (path: string, exec?: (line: string) => number) => {
         input: fs.createReadStream(path),
     });
 
-    lineReader.on("line", function (line) {
+    lineReader.on("line", (line) => {
         if (exec) {
             result = exec(line);
             return;
@@ -16,7 +16,7 @@ export const readStream = (path: string, exec?: (line: string) => number) => {
         console.log("Line from file:", line);
     });
 
-    lineReader.on("close", function () {
+    lineReader.on("close", () => {
         console.log(`\nResult: ${result}\n`);
         console.log("<<< End of file >>>");
     });
