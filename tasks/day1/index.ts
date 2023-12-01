@@ -1,5 +1,5 @@
 import { readStream } from "../../utils/readFileStream";
-
+console.time('time_spent');
 let sum = 0;
 
 const PAIRS = {
@@ -38,4 +38,5 @@ readStream(`${__dirname}/input.txt`, (line) => {
 
     return sum;
 });
+console.timeEnd('time_spent');
 
