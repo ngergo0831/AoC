@@ -1,0 +1,19 @@
+{
+    "name": "aoc",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "./run-day.sh"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/node": "^20.10.1",
+        "typescript": "^5.3.2"
+    },
+    "dependencies": {
+        "ts-node": "^10.9.1"
+    }
+}
