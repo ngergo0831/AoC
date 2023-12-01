@@ -10,11 +10,11 @@ const PAIRS = {
     five: "f5e",
     six: "s6x",
     seven: "s7n",
-    eight: "e8i",
+    eight: "e8t",
     nine: "n9e",
 };
 
-const replaceWordsWithNumbers = (line) => {
+const replaceWordsWithNumbers = (line: string) => {
     return Object.entries(PAIRS)
         .reduce(
             (result, [key, value]) =>
