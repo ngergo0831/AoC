@@ -10,22 +10,33 @@ const MAX_VALUES = {
 
 readStream(`${__dirname}/input.txt`, (line) => {
     let isGamePossible = true;
+    const maxOfColors = {
+        red: 0,
+        green: 0,
+        blue: 0,
+    };
+
     const splittedLine = line.split(":");
     const gameId = splittedLine[0].slice(5);
 
     splittedLine[1].split(";").map((game) =>
         game.split(",").map((g) => {
-            const [cubes, colors] = g.trimStart().split(" ");
-            if (cubes > MAX_VALUES[colors]) {
+            const [cubes, color] = g.trimStart().split(" ");
+
+            // part 1
+            if (Number.parseInt(cubes) > MAX_VALUES[color]) {
                 isGamePossible = false;
-                return 0;
+                // return 0;
+            }
+
+            // part 2
+            if (Number.parseInt(cubes) > maxOfColors[color]) {
+                maxOfColors[color] = cubes;
             }
         })
     );
 
-    if (isGamePossible) {
-        sum += Number.parseInt(gameId);
-    }
+    sum += maxOfColors.red * maxOfColors.green * maxOfColors.blue;
 
     return sum;
 });
